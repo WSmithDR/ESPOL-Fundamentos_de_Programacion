@@ -6,3 +6,5 @@ edades = [22, 20, 70, 53]
 
 familia = {"Juan":{"María", "Pedro"}, "Carlos":{"Susy", "Jorge", "Pedro"}, "Carmen":{"Lisa"}}
 
+
+clases = {123:{"Algebra":5, "Física":3}, 234:{"Algebra":2, "Física":4, "Química":3}, 326:{"Física": 2}}
