@@ -1,0 +1,4 @@
+123,Libro,30
+234,Cuaderno,45
+320,Regla,20
+250,Mochila,14
