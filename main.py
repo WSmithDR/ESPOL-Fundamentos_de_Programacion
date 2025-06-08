@@ -23,4 +23,3 @@ t = [[7, 3], [3, 6], [9, 8], [5, 4]]
 a = [[7, "Algebra"], [3, "Física"], [9, "Química"]]
 
 stringnum = "fdadsfgsfdgsdf6g5sf6g56sdf5g6s5df6gs6dfg56sdf5g6s5df6g56sfdg54s4f5g4s5dfgsfdgsdfgs"
-    
