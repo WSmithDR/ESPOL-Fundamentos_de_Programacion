@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Banner - Full Stack Developer</title>
+    <!-- Importar fuentes modernas -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Iconos -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000; /* Fondo de la página negro */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        /* Contenedor principal */
+        .banner-container {
+            width: 1584px;
+            height: 396px;
+            
+            /* CAMBIO: Fondo negro profundo con un toque muy sutil de azul noche en las esquinas */
+            background: radial-gradient(circle at 50% 50%, #0a0a0a 0%, #020202 100%);
+            
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end; /* Alinear contenido principal a la derecha */
+            padding-right: 80px;
+            
+            /* Borde neón sutil */
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.05);
+            border: 1px solid #1a1a1a;
+        }
+
+        /* Elementos decorativos de fondo (Tech Grid) */
+        .grid-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Grid más sutil para el fondo negro */
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 1;
+            opacity: 0.5;
+        }
+
+        /* Efecto de brillo ambiental (ahora más discreto) */
+        .glow-spot {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            /* Brillo cian muy suave en la esquina derecha */
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.03) 0%, transparent 60%);
+            top: -200px;
+            right: -200px;
+            z-index: 1;
+        }
+
+        /* Contenedor de contenido (Derecha) */
+        .content {
+            z-index: 10;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 15px;
+            /* Asegurar que el contenido tenga su espacio reservado */
+            min-width: 600px; 
+        }
+
+        /* Texto Principal */
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 82px;
+            color: #ffffff;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            /* Sombra ajustada para fondo negro */
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.1), 0 0 40px rgba(0, 255, 255, 0.15);
+            line-height: 1;
+        }
+
+        /* Iconos */
+        .icons-row {
+            display: flex;
+            align-items: center;
+            gap: 45px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            padding-right: 5px;
+        }
+
+        .tech-icon {
+            font-size: 50px;
+            transition: transform 0.3s ease;
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Estilos de Iconos (Sin cambios, solo brillan más en fondo negro) */
+        .ts-img {
+            width: 45px;
+            height: 45px;
+            filter: drop-shadow(0 0 10px rgba(49, 120, 198, 0.5));
+            border-radius: 4px; 
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .react-icon { 
+            color: #61DAFB; 
+            filter: drop-shadow(0 0 10px rgba(97, 218, 251, 0.5));
+            animation: float 3s ease-in-out infinite 0.3s;
+        }
+        
+        .node-icon { 
+            color: #68A063; 
+            filter: drop-shadow(0 0 10px rgba(104, 160, 99, 0.5));
+            animation: float 3s ease-in-out infinite 0.6s;
+        }
+        
+        .python-img { 
+            width: 55px; 
+            height: 55px;
+            filter: drop-shadow(0 0 12px rgba(55, 118, 171, 0.4));
+            animation: float 3s ease-in-out infinite 0.9s;
+        }
+
+        .db-icon {
+            color: #e0e0e0;
+            background: linear-gradient(135deg, #e0e0e0 0%, #336791 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 10px rgba(51, 103, 145, 0.7));
+            animation: float 3s ease-in-out infinite 1.2s;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Email */
+        .email {
+            font-family: 'Roboto Mono', monospace;
+            color: #00ffff;
+            font-size: 24px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            background: rgba(10, 10, 10, 0.8); /* Fondo más oscuro */
+            padding: 8px 20px;
+            border-radius: 4px;
+            border: 1px solid rgba(0, 255, 255, 0.3); /* Borde cian más visible */
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .email i {
+            font-size: 20px;
+        }
+
+        /* Línea inferior */
+        .bottom-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            /* Gradiente más enfocado en el centro */
+            background: linear-gradient(90deg, transparent 0%, #00ffff 50%, transparent 100%);
+            opacity: 0.8;
+            box-shadow: 0 0 15px #00ffff;
+        }
+
+        /* CAMBIO: Bloque de código ajustado */
+        .code-bg {
+            position: absolute;
+            /* Posición fija a la izquierda */
+            left: 80px; 
+            top: 50%;
+            transform: translateY(-50%);
+            
+            /* Ancho limitado para que NO toque el texto de la derecha */
+            max-width: 500px;
+            
+            font-family: 'Roboto Mono', monospace;
+            
+            /* Estilo "Tarjeta Glassmorphism" oscura */
+            background-color: rgba(15, 15, 20, 0.95); 
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(50, 50, 50, 0.5);
+            /* Borde izquierdo cian para acento */
+            border-left: 3px solid #00ffff;
+            
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            
+            color: rgba(200, 200, 200, 0.8); 
+            font-size: 15px;
+            line-height: 1.6;
+            
+            white-space: pre;
+            z-index: 20; /* Elevado sobre el fondo */
+        }
+        
+        /* Coloreado de sintaxis simple para el bloque de código */
+        .kw { color: #cc7832; } /* Keyword */
+        .cls { color: #e8bf6a; } /* Class */
+        .str { color: #6a8759; } /* String */
+        .fn { color: #ffc66d; } /* Function */
+        .bool { color: #cc7832; } /* Boolean */
+        .prop { color: #9876aa; } /* Property */
+
+    </style>
+</head>
+<body>
+
+    <div class="banner-container">
+        <!-- Fondo de cuadrícula técnica -->
+        <div class="grid-bg"></div>
+        <div class="glow-spot"></div>
+
+        <!-- Bloque de código: Ahora una tarjeta sólida a la izquierda -->
+        <div class="code-bg"><span class="kw">class</span> <span class="cls">Developer</span> <span class="kw">extends</span> <span class="cls">Human</span> {
+  <span class="kw">constructor</span>() {
+    <span class="kw">this</span>.<span class="prop">stack</span> = [<span class="str">'TS'</span>, <span class="str">'React'</span>, <span class="str">'Node'</span>, <span class="str">'Python'</span>, <span class="str">'SQL'</span>];
+    <span class="kw">this</span>.<span class="prop">passion</span> = <span class="str">'Full Stack'</span>;
+    <span class="kw">this</span>.<span class="prop">coffee</span> = <span class="bool">true</span>;
+  }
+  
+  <span class="fn">deploy</span>() {
+    <span class="kw">return</span> <span class="str">"Hello World"</span>;
+  }
+}</div>
+
+        <!-- Contenido Principal: Derecha -->
+        <div class="content">
+            <h1>FULL STACK<br>DEVELOPER</h1>
+            
+            <div class="icons-row">
+                <!-- 1. TypeScript -->
+                <img 
+                    src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg" 
+                    alt="TypeScript" 
+                    class="tech-icon ts-img"
+                    onerror="this.style.display='none'"
+                >
+
+                <!-- 2. React -->
+                <i class="fab fa-react tech-icon react-icon" title="React"></i>
+                
+                <!-- 3. Node.js -->
+                <i class="fab fa-node-js tech-icon node-icon" title="Node.js"></i>
+                
+                <!-- 4. Python -->
+                <img 
+                    src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" 
+                    alt="Python" 
+                    class="tech-icon python-img"
+                    onerror="this.style.display='none'"
+                >
+
+                <!-- 5. Database -->
+                <i class="fas fa-database tech-icon db-icon" title="SQL / Databases"></i>
+            </div>
+
+            <div class="email">
+                <i class="fas fa-envelope"></i> wsmithdrdev@gmail.com
+            </div>
+        </div>
+
+        <!-- Línea neón inferior -->
+        <div class="bottom-line"></div>
+    </div>
+
+</body>
+</html>
